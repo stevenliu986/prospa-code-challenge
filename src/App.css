@@ -42,6 +42,7 @@
   margin-bottom: 5px;
 }
 
-.load-btn {
+.load-btn,
+.delete-btn {
   margin: 20px 0;
 }
