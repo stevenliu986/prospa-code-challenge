@@ -19,10 +19,6 @@ function App() {
     setLimit((limit) => limit + 5);
   };
 
-  // const deleteItem = (id: number) => {
-  //   setData(data?.filter(id=> id !== undefined))
-  // }
-
   useEffect(() => {
     axios
       .get(`https://api.spacexdata.com/v3/launches?limit=${limit}`)
@@ -37,16 +33,28 @@ function App() {
     return <div>Page is Loading...</div>;
   }
 
+  const deleteFlight = (flightNumber: any) => {
+    const flightRemained = data.filter(
+      (flight) => flight.flight_number !== flightNumber
+    );
+    setData(flightRemained);
+  };
+
   return (
     <div className="App">
-      {data.map((item) => {
+      {data.map((flight) => {
         return (
-          <div key={item.flight_number} className="flight-box">
-            <p>{item.flight_number}</p>
-            <p>{item.mission_name}</p>
-            <p>{item.rocket.rocket_name}</p>
-            <p>{item.launch_success ? "success" : "false"}</p>
-            {/* <button onClick={deleteItem}>Delete</button> */}
+          <div key={flight.flight_number} className="flight-box">
+            <p>{flight.flight_number}</p>
+            <p>{flight.mission_name}</p>
+            <p>{flight.rocket.rocket_name}</p>
+            <p>{flight.launch_success ? "success" : "false"}</p>
+            <button
+              onClick={() => deleteFlight(flight.flight_number)}
+              className="delete-btn"
+            >
+              Delete
+            </button>
           </div>
         );
       })}
