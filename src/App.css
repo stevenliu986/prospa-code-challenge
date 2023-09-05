@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.flight-box {
+  border: 1px solid orange;
+  margin-bottom: 5px;
+}
+
+.load-btn {
+  margin: 20px 0;
+}
